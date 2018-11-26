@@ -6,14 +6,18 @@
 #include "ADC_HAL.h"
 
 extern HWTimer_t timer0, timer1;
+//Graphics_Context g_sContext;
 
 /* ADC results buffer */
 
 // This function initializes all the peripherals except graphics
 void initialize();
 void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed);
+void DrawBall(Graphics_Context *g_sContext_p);
+void DrawVxVy(Graphics_Context *g_sContext_p);
 
 #define LEFT_THRESHOLD  0x1000
+#define STABLE_THRESHOLD 0x1DBF
 #define DURATION 100
 
 
@@ -46,7 +50,13 @@ int main(void)
         if (OneShotSWTimerExpired(&OST)) {
 
             getSampleAccelerometer(resultsBuffer);
-            drawAccelData(&g_sContext, resultsBuffer);
+
+            if (resultsBuffer[0] < STABLE_THRESHOLD){
+                    DrawBall(&g_sContext);                              //Draw the ball here
+                    //DrawVxVy(&g_sContext);                              //Draw Vx and Vy here
+            }
+            DrawVxVy(&g_sContext);
+            //drawAccelData(&g_sContext, resultsBuffer);
             StartOneShotSWTimer(&OST);
         }
 
