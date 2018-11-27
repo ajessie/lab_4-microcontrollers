@@ -3,14 +3,14 @@
 Timer32_HAL.obj: ../Timer32_HAL.c
 Timer32_HAL.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/driverlib.h
 Timer32_HAL.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/adc14.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h
-Timer32_HAL.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h
+Timer32_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h
 Timer32_HAL.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp.h
 Timer32_HAL.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp432p401r.h
 Timer32_HAL.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp_compatibility.h
@@ -53,14 +53,14 @@ Timer32_HAL.obj: ../ButtonLED_HAL.h
 ../Timer32_HAL.c: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/driverlib.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/adc14.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp432p401r.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp_compatibility.h: 

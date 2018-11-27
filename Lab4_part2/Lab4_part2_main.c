@@ -7,19 +7,35 @@
 
 extern HWTimer_t timer0, timer1;
 
+
+//typedef enum {zero,one,two} gears;
+//
+//typedef struct Speeds
+//{
+//    gears Speed;
+//    int Vx;
+//    int Vy;
+//} Speeds;
+//
+//static Speeds speed = zero;
+
 /* ADC results buffer */
 
 // This function initializes all the peripherals except graphics
 void initialize();
 void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed);
 
+
 #define LEFT_THRESHOLD  0x1000
+#define STABLE_THRESHOLD 0x1DBF
+#define VX_ZERO_GEAR    0x19BD
 #define DURATION 100
 
 
 int main(void)
 {
     Graphics_Context g_sContext;
+    Speeds speed;
     InitGraphics(&g_sContext);
 
     initialize();
@@ -46,10 +62,30 @@ int main(void)
         if (OneShotSWTimerExpired(&OST)) {
 
             getSampleAccelerometer(resultsBuffer);
-            drawAccelData(&g_sContext, resultsBuffer);
+//            GearShift()
+
+//            if (resultsBuffer[0] < STABLE_THRESHOLD){
+//                    DrawBall(&g_sContext);                                //Draw the ball here
+//                    speed.Speed = zero;
+//                    //DrawVxVy(&g_sContext);                              //Draw Vx and Vy here
+//            }
+
+            if (resultsBuffer[0] < VX_ZERO_GEAR ){
+                 speed.Vx = 0;
+                 WriteSpeed(&speed, &g_sContext);
+            }
+
+//           WriteSpeed(&speed, &g_sContext);
+           // drawAccelData(&g_sContext, resultsBuffer);
+
             StartOneShotSWTimer(&OST);
+
         }
 
+
+        //GearShift(resultsBuffer, &speed, &g_sContext);
+        //WriteSpeed(&speed, &g_sContext);
+       // WriteSpeed(&speed, &g_sContext);
         bool leftButtonPushed = ButtonPushed(&LauchpadLeftButton);
         bool rightButtonPushed = ButtonPushed(&LauchpadRightButton);
 
@@ -65,8 +101,11 @@ int main(void)
 
 
         ModifyLEDColor(leftButtonPushed,rightButtonPushed);
-
-
+        DrawBall(&g_sContext);
+        //DrawTop(&g_sContext);
+        DrawWalls(&g_sContext);
+        DrawEasyStage(&g_sContext);
+        DrawVxVy(&g_sContext);
     }
 }
 
@@ -190,7 +229,6 @@ void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed)
         toggle_BoosterpackLED_blue();
 
 }
-
 
 
 /* This interrupt is fired whenever a conversion is completed and placed in

@@ -8,6 +8,7 @@
 #include <ti/grlib/grlib.h>
 #include "LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "Timer32_HAL.h"
+#include "graphics_HAL.h"
 
 // 100ms in us unit is 100,000
 #define T10MS_IN_US 10000
@@ -20,10 +21,12 @@
 
 extern HWTimer_t timer0, timer1;
 
+
 void printList_blocking(Graphics_Context *g_sContext_p, int n)
 {
 
     int8_t string[2];
+
     string[1] = 0;
 
 
@@ -50,6 +53,97 @@ void printList_blocking(Graphics_Context *g_sContext_p, int n)
 
     }
 
+}
+
+void DrawBall(Graphics_Context *g_sContext_p){                                                              //Draw the green circle at bottom of the screen
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);
+    Graphics_fillCircle(g_sContext_p, 64, 106, 2);
+}
+
+void DrawTop(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 40, y_pos = 60;
+    int i;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 60; i++){
+        x_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+}
+
+void DrawBottom(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 40, y_pos = 110;
+    int i;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 60 ; i++){
+        x_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+}
+
+void DrawRight(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 100, y_pos = 60;
+    int i;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 50; i++){
+        y_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+}
+
+void DrawLeft(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 40, y_pos = 60;
+    int i;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 50; i++){
+        y_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+}
+
+void DrawWalls(Graphics_Context *g_sContext_p){
+    DrawTop(g_sContext_p);
+    DrawBottom(g_sContext_p);
+    DrawRight(g_sContext_p);
+    DrawLeft(g_sContext_p);
+}
+
+void DrawEasyStage(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 74, y_pos = 110;
+    int i;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 30; i++){
+        y_pos--;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+
+    DrawEasyHole(g_sContext_p);
+}
+
+void DrawEasyHole(Graphics_Context *g_sContext_p){
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 90, 70, 4);
+}
+
+void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
+
+    if (speed->Vx == 0){
+        //Graphics_clearDisplay(g_sContext_p);
+        char text[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        speed->Vx = 0;
+        sprintf(text, "%u", speed->Vx);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+
+    }
+}
+
+void DrawVxVy(Graphics_Context *g_sContext_p){                                                              //This will draw Vx and Vy respectively on the screen
+    char string[10] = "Vx:";
+    char string2[10]= "Vy:";
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+    Graphics_drawString(g_sContext_p,(int8_t *) string , -1, 50, 4, true);                                             //Draw Vx string on top of screen
+    Graphics_drawString(g_sContext_p,(int8_t *) string2 , -1, 50, 14, true);                                            //Draw Vy string on top of screen
 }
 
 
@@ -280,7 +374,7 @@ void drawAccelData(Graphics_Context *g_sContext_p, uint16_t *resultsBuffer)
                                     (int8_t *)string,
                                     8,
                                     64,
-                                    8,
+                                    30,
                                     OPAQUE_TEXT);
 
     make_5digit_NumString(resultsBuffer[1], string);
@@ -288,7 +382,7 @@ void drawAccelData(Graphics_Context *g_sContext_p, uint16_t *resultsBuffer)
                                     (int8_t *)string,
                                     8,
                                     64,
-                                    20,
+                                    42,
                                     OPAQUE_TEXT);
 
     make_5digit_NumString(resultsBuffer[2], string);
@@ -296,6 +390,6 @@ void drawAccelData(Graphics_Context *g_sContext_p, uint16_t *resultsBuffer)
                                     (int8_t *)string,
                                     8,
                                     64,
-                                    32,
+                                    62,
                                     OPAQUE_TEXT);
 }

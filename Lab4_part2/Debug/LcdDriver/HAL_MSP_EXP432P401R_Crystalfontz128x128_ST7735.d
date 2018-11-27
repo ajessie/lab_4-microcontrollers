@@ -2,16 +2,16 @@
 
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: ../LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.c
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: ../LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/driverlib.h
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/adc14.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp.h
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp432p401r.h
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp_compatibility.h
@@ -49,22 +49,22 @@ LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_m
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/sysctl.h
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/flash.h
 LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/grlib/grlib.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/assert.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/_ti_config.h
-LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/linkage.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/assert.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/_ti_config.h
+LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/linkage.h
 
 ../LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.c: 
 ../LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/cdefs.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_types.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_types.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/machine/_stdint.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/sys/_stdint.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/driverlib.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/adc14.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdbool.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp432p401r.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/inc/msp_compatibility.h: 
@@ -102,6 +102,6 @@ C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/sysctl.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/devices/msp432p4xx/driverlib/flash.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/grlib/grlib.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/assert.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/_ti_config.h: 
-C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/linkage.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/assert.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/_ti_config.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/linkage.h: 
