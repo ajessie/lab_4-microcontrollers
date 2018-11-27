@@ -7,18 +7,6 @@
 
 extern HWTimer_t timer0, timer1;
 
-
-//typedef enum {zero,one,two} gears;
-//
-//typedef struct Speeds
-//{
-//    gears Speed;
-//    int Vx;
-//    int Vy;
-//} Speeds;
-//
-//static Speeds speed = zero;
-
 /* ADC results buffer */
 
 // This function initializes all the peripherals except graphics
