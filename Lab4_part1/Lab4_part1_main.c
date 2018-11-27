@@ -104,6 +104,7 @@ int main(void)
         DrawBall(&g_sContext);
         //DrawTop(&g_sContext);
         DrawWalls(&g_sContext);
+        DrawEasyStage(&g_sContext);
         DrawVxVy(&g_sContext);
     }
 }
