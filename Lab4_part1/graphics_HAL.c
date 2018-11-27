@@ -116,6 +116,13 @@ void DrawEasyStage(Graphics_Context *g_sContext_p){
         y_pos--;
         Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
     }
+
+    DrawEasyHole(g_sContext_p);
+}
+
+void DrawEasyHole(Graphics_Context *g_sContext_p){
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 90, 70, 4);
 }
 
 void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
