@@ -230,35 +230,6 @@ void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed)
 
 }
 
-//void GearShift (uint16_t *resultsBuffer, Speeds *speed){
-//    Graphics_Context g_sContext_p;
-//
-//    switch (speed)
-//    {
-//    case zero:
-//        speed = zero;
-//        speed->Vx = 0;
-//        char text[16] = "";
-//        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
-//        sprintf(text, "%u", speed->Vx);
-//        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 60, 4, true);
-////        if (resultsBuffer[0] < STABLE_THRESHOLD && resultsBuffer[1] < STABLE_THRESHOLD)
-////        {
-////
-////        }
-//        break;
-//    }
-//}
-
-//void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
-//
-//    char text[16] = "";
-//    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
-//    sprintf(text, "%u", speed->Vx);
-//    Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 60, 4, true);
-//}
-
-
 
 /* This interrupt is fired whenever a conversion is completed and placed in
  * ADC_MEM2. This signals the end of conversion and the results array is
