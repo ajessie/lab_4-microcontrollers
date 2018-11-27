@@ -11,7 +11,7 @@ CMD_SRCS += \
 C_SRCS += \
 ../ADC_HAL.c \
 ../ButtonLED_HAL.c \
-../Lab4_main.c \
+../Lab4_part1_main.c \
 ../Timer32_HAL.c \
 ../graphics_HAL.c \
 ../system_msp432p401r.c 
@@ -19,7 +19,7 @@ C_SRCS += \
 C_DEPS += \
 ./ADC_HAL.d \
 ./ButtonLED_HAL.d \
-./Lab4_main.d \
+./Lab4_part1_main.d \
 ./Timer32_HAL.d \
 ./graphics_HAL.d \
 ./system_msp432p401r.d 
@@ -27,7 +27,7 @@ C_DEPS += \
 OBJS += \
 ./ADC_HAL.obj \
 ./ButtonLED_HAL.obj \
-./Lab4_main.obj \
+./Lab4_part1_main.obj \
 ./Timer32_HAL.obj \
 ./graphics_HAL.obj \
 ./system_msp432p401r.obj 
@@ -35,7 +35,7 @@ OBJS += \
 OBJS__QUOTED += \
 "ADC_HAL.obj" \
 "ButtonLED_HAL.obj" \
-"Lab4_main.obj" \
+"Lab4_part1_main.obj" \
 "Timer32_HAL.obj" \
 "graphics_HAL.obj" \
 "system_msp432p401r.obj" 
@@ -43,7 +43,7 @@ OBJS__QUOTED += \
 C_DEPS__QUOTED += \
 "ADC_HAL.d" \
 "ButtonLED_HAL.d" \
-"Lab4_main.d" \
+"Lab4_part1_main.d" \
 "Timer32_HAL.d" \
 "graphics_HAL.d" \
 "system_msp432p401r.d" 
@@ -51,7 +51,7 @@ C_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "../ADC_HAL.c" \
 "../ButtonLED_HAL.c" \
-"../Lab4_main.c" \
+"../Lab4_part1_main.c" \
 "../Timer32_HAL.c" \
 "../graphics_HAL.c" \
 "../system_msp432p401r.c" 
