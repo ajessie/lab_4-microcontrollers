@@ -3,12 +3,14 @@
  *
  *  Created on: Oct 18, 2018
  *      Author: Leyla
+ *      Revised by Jessie Acfalle
  */
 
 #include <ti/grlib/grlib.h>
 #include "LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "Timer32_HAL.h"
 #include "graphics_HAL.h"
+#include <stdio.h>
 
 // 100ms in us unit is 100,000
 #define T10MS_IN_US 10000
@@ -155,22 +157,42 @@ void DrawEasyHole(Graphics_Context *g_sContext_p){
 
 void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
 
-    if (speed->Vx == 0){
-        //Graphics_clearDisplay(g_sContext_p);
+    if (speed->Vx == 0 && speed->Vy==0){
         char text[25] = "";
+        char text2[25] = "";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
-        speed->Vx = 0;
         sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
 
+    else if (speed->Vx == 1 && speed->Vy == 1){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+
+    else if (speed->Vx == 2 && speed->Vy == 2){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
     }
 }
 
-void DrawVxVy(Graphics_Context *g_sContext_p){                                                              //This will draw Vx and Vy respectively on the screen
+void DrawVxVy(Graphics_Context *g_sContext_p){                                                                          //This will draw Vx and Vy respectively on the screen
     char string[10] = "Vx:";
     char string2[10]= "Vy:";
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
-    Graphics_drawString(g_sContext_p,(int8_t *) string , -1, 50, 4, true);                                             //Draw Vx string on top of screen
+    Graphics_drawString(g_sContext_p,(int8_t *) string , -1, 50, 4, true);                                              //Draw Vx string on top of screen
     Graphics_drawString(g_sContext_p,(int8_t *) string2 , -1, 50, 14, true);                                            //Draw Vy string on top of screen
 }
 

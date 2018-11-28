@@ -56,6 +56,8 @@ graphics_HAL.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/grlib/grlib
 graphics_HAL.obj: ../Timer32_HAL.h
 graphics_HAL.obj: ../graphics_HAL.h
 graphics_HAL.obj: C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/grlib/grlib.h
+graphics_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdio.h
+graphics_HAL.obj: C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdarg.h
 
 ../graphics_HAL.c: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/grlib/grlib.h: 
@@ -113,3 +115,5 @@ C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/grlib/grlib.h:
 ../Timer32_HAL.h: 
 ../graphics_HAL.h: 
 C:/ti/simplelink_msp432p4_sdk_2_20_00_12/source/ti/grlib/grlib.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdio.h: 
+C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include/stdarg.h: 

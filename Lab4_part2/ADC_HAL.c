@@ -154,9 +154,9 @@ void getSampleJoyStick(unsigned *X, unsigned *Y) {
 
 void getSampleAccelerometer(uint16_t *resultsBuffer)
 {
-        resultsBuffer[0] = ADC14_getResult(ADC_MEM0);
-        resultsBuffer[1] = ADC14_getResult(ADC_MEM1);
-        resultsBuffer[2] = ADC14_getResult(ADC_MEM2);
+        resultsBuffer[0] = ADC14_getResult(ADC_MEM0); //x
+        resultsBuffer[1] = ADC14_getResult(ADC_MEM1); //y
+        resultsBuffer[2] = ADC14_getResult(ADC_MEM2); //z
 
 }
 

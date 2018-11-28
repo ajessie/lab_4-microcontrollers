@@ -17,7 +17,9 @@ void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed);
 #define LEFT_THRESHOLD  0x1000
 #define STABLE_THRESHOLD 0x1DBF
 #define VX_ZERO_GEAR    0x19BD
+#define ONE_LEFT_TILT 0x1BFF
 #define DURATION 100
+#define VX_LEFT_TILT_THREE 0x13F1
 
 
 int main(void)
@@ -50,10 +52,24 @@ int main(void)
         if (OneShotSWTimerExpired(&OST)) {
 
             getSampleAccelerometer(resultsBuffer);
-            if (resultsBuffer[0] < VX_ZERO_GEAR ){
+            if (resultsBuffer[0] < VX_ZERO_GEAR  || resultsBuffer[0] < STABLE_THRESHOLD){
                  speed.Vx = 0;
+                 speed.Vy = 0;
                  WriteSpeed(&speed, &g_sContext);
             }
+
+            if (resultsBuffer[0] < ONE_LEFT_TILT && resultsBuffer[1] > ONE_LEFT_TILT ){
+                speed.Vx = 1;
+                speed.Vy = 1;
+                WriteSpeed(&speed, &g_sContext);
+            }
+
+            if ((resultsBuffer[0] < 0x18CE && resultsBuffer[1] < 0x1B30) || (resultsBuffer[0] < 0x1450 && resultsBuffer[1] < 0x1C20)){
+                speed.Vx = 2;
+                speed.Vy = 2;
+                WriteSpeed(&speed, &g_sContext);
+            }
+            drawAccelData(&g_sContext, resultsBuffer);
             StartOneShotSWTimer(&OST);
         }
 
