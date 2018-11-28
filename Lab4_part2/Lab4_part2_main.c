@@ -53,9 +53,10 @@ int main(void)
             if (resultsBuffer[0] < VX_ZERO_GEAR ){
                  speed.Vx = 0;
                  WriteSpeed(&speed, &g_sContext);
+            }
             StartOneShotSWTimer(&OST);
-
         }
+
         bool leftButtonPushed = ButtonPushed(&LauchpadLeftButton);
         bool rightButtonPushed = ButtonPushed(&LauchpadRightButton);
 
@@ -72,12 +73,12 @@ int main(void)
 
         ModifyLEDColor(leftButtonPushed,rightButtonPushed);
         DrawBall(&g_sContext);
-        //DrawTop(&g_sContext);
         DrawWalls(&g_sContext);
         DrawEasyStage(&g_sContext);
         DrawVxVy(&g_sContext);
     }
 }
+
 
 void initialize()
 {

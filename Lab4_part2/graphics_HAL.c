@@ -63,41 +63,69 @@ void DrawBall(Graphics_Context *g_sContext_p){                                  
 
 void DrawTop(Graphics_Context *g_sContext_p){
     uint16_t x_pos = 40, y_pos = 60;
+    uint16_t x2_pos = 40, y2_pos = 59;
     int i;
+    int j;
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
     for (i =0; i < 60; i++){
         x_pos++;
         Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
     }
+
+    for (j =0; j < 60; j++){
+        x2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
 }
 
 void DrawBottom(Graphics_Context *g_sContext_p){
     uint16_t x_pos = 40, y_pos = 110;
+    uint16_t x2_pos = 40, y2_pos = 109;
     int i;
+    int j;
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
     for (i =0; i < 60 ; i++){
         x_pos++;
         Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
     }
+
+    for (j =0; j < 60; j++){
+        x2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
 }
 
 void DrawRight(Graphics_Context *g_sContext_p){
     uint16_t x_pos = 100, y_pos = 60;
+    uint16_t x2_pos = 101, y2_pos = 60;
     int i;
+    int j;
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
     for (i =0; i < 50; i++){
         y_pos++;
         Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
     }
+
+    for (j =0; j < 50; j++){
+        y2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
 }
 
 void DrawLeft(Graphics_Context *g_sContext_p){
     uint16_t x_pos = 40, y_pos = 60;
+    uint16_t x2_pos = 41, y2_pos = 60;
     int i;
+    int j;
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
     for (i =0; i < 50; i++){
         y_pos++;
         Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+
+    for (j =0; j < 50; j++){
+        y2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
     }
 }
 
