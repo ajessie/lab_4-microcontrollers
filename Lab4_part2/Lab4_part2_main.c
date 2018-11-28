@@ -50,30 +50,12 @@ int main(void)
         if (OneShotSWTimerExpired(&OST)) {
 
             getSampleAccelerometer(resultsBuffer);
-//            GearShift()
-
-//            if (resultsBuffer[0] < STABLE_THRESHOLD){
-//                    DrawBall(&g_sContext);                                //Draw the ball here
-//                    speed.Speed = zero;
-//                    //DrawVxVy(&g_sContext);                              //Draw Vx and Vy here
-//            }
-
             if (resultsBuffer[0] < VX_ZERO_GEAR ){
                  speed.Vx = 0;
                  WriteSpeed(&speed, &g_sContext);
-            }
-
-//           WriteSpeed(&speed, &g_sContext);
-           // drawAccelData(&g_sContext, resultsBuffer);
-
             StartOneShotSWTimer(&OST);
 
         }
-
-
-        //GearShift(resultsBuffer, &speed, &g_sContext);
-        //WriteSpeed(&speed, &g_sContext);
-       // WriteSpeed(&speed, &g_sContext);
         bool leftButtonPushed = ButtonPushed(&LauchpadLeftButton);
         bool rightButtonPushed = ButtonPushed(&LauchpadRightButton);
 
@@ -96,7 +78,6 @@ int main(void)
         DrawVxVy(&g_sContext);
     }
 }
-
 
 void initialize()
 {
