@@ -29,6 +29,10 @@ void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed);
 #define MOVE_RIGHT_SLOW_Y 0x1EDC
 #define MOVE_LEFT_SLOW_X  0x1932
 #define MOVE_LEFT_SLOW_X2 0x1AF4
+#define MOVE_DOWN_SLOW_Y 0x1AD6
+#define MOVE_DOWN_SLOW_Y2 0x1B8A
+#define MOVE_UP_SLOW_Y 0x1D24
+#define MOVE_UP_SLOW_Y2 0x1E78
 
 int main(void)
  {
@@ -62,26 +66,26 @@ int main(void)
         if (OneShotSWTimerExpired(&OST)) {
 
             getSampleAccelerometer(resultsBuffer);
-            if (resultsBuffer[0] < VX_ZERO_GEAR  || resultsBuffer[0] < STABLE_THRESHOLD){
-                 speed.Vx = 0;
-                 speed.Vy = 0;
-                 WriteSpeed(&speed, &g_sContext);
-
-            }
-
-            if (resultsBuffer[0] < ONE_LEFT_TILT && resultsBuffer[1] > ONE_LEFT_TILT ){
-                speed.Vx = 1;
-                speed.Vy = 1;
-                WriteSpeed(&speed, &g_sContext);
-               // MoveBall(&g_sContext, &marble, &speed);
-            }
-
-            if ((resultsBuffer[0] < 0x18CE && resultsBuffer[1] < 0x1B30) || (resultsBuffer[0] < 0x1450 && resultsBuffer[1] < 0x1C20)){
-                speed.Vx = 2;
-                speed.Vy = 2;
-                WriteSpeed(&speed, &g_sContext);
-                //MoveBall(&g_sContext, &marble, &speed);
-            }
+//            if (resultsBuffer[0] < VX_ZERO_GEAR  || resultsBuffer[0] < STABLE_THRESHOLD){
+//                 speed.Vx = 0;
+//                 speed.Vy = 0;
+//                 WriteSpeed(&speed, &g_sContext);
+//
+//            }
+//
+//            if (resultsBuffer[0] < ONE_LEFT_TILT && resultsBuffer[1] > ONE_LEFT_TILT ){
+//                speed.Vx = 1;
+//                speed.Vy = 1;
+//                WriteSpeed(&speed, &g_sContext);
+//               // MoveBall(&g_sContext, &marble, &speed);
+//            }
+//
+//            if ((resultsBuffer[0] < 0x18CE && resultsBuffer[1] < 0x1B30) || (resultsBuffer[0] < 0x1450 && resultsBuffer[1] < 0x1C20)){
+//                speed.Vx = 2;
+//                speed.Vy = 2;
+//                WriteSpeed(&speed, &g_sContext);
+//                //MoveBall(&g_sContext, &marble, &speed);
+//            }
 
             if (resultsBuffer[0] > MOVE_RIGHT){
                 speed.Vx = 0;
@@ -114,6 +118,22 @@ int main(void)
                 WriteSpeed(&speed, &g_sContext);
                 MoveBall(&g_sContext, &marble, &speed);
             }
+
+            if(resultsBuffer[1] > MOVE_DOWN_SLOW_Y && resultsBuffer[1] < MOVE_DOWN_SLOW_Y2){
+                speed.Vx = 1;
+                speed.Vy = 1;
+                marble.direction = Down;
+                WriteSpeed(&speed, &g_sContext);
+                MoveBall(&g_sContext, &marble, &speed);
+            }
+
+            if (resultsBuffer[1] > MOVE_UP_SLOW_Y && resultsBuffer[1] < MOVE_UP_SLOW_Y2){
+                speed.Vx = 1;
+                speed.Vy = 1;
+                marble.direction = Up;
+                WriteSpeed(&speed, &g_sContext);
+                MoveBall(&g_sContext, &marble, &speed);
+            }
             drawAccelData(&g_sContext, resultsBuffer);
             StartOneShotSWTimer(&OST);
         }
@@ -134,6 +154,7 @@ int main(void)
 
         ModifyLEDColor(leftButtonPushed,rightButtonPushed);
         //DrawBall(&g_sContext, &marble);
+        GameOver(&g_sContext, &marble, &speed);
         DrawWalls(&g_sContext);
         DrawEasyStage(&g_sContext);
         DrawVxVy(&g_sContext);
@@ -155,7 +176,7 @@ void initialize()
     initialize_LaunchpadLED2_blue();
     initialize_LaunchpadLED2_green();
 
-    turnOn_BoosterpackLED_red();
+    turnOff_BoosterpackLED_red();
     turnOff_BoosterpackLED_green();
     turnOff_BoosterpackLED_blue();
     turnOff_LaunchpadLED1();

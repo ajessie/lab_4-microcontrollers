@@ -23,7 +23,6 @@ typedef struct Speeds
     int count;
 } Speeds;
 
-
 void draw_Base(Graphics_Context *g_sContext_p);
 void MoveCircle(Graphics_Context *g_sContext_p, bool moveToLeft, bool moveToRight);
 void InitGraphics(Graphics_Context *g_sContext_p);
@@ -44,5 +43,6 @@ void DrawEasyStage(Graphics_Context *g_sContext_p);
 void DrawEasyHole(Graphics_Context *g_sContext_p);
 void DrawHoles(Graphics_Context *g_sContext_p);
 void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed);
+void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed);
 
 #endif /* GRAPHICS_HAL_H_ */

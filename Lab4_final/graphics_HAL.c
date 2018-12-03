@@ -12,6 +12,7 @@
 #include "graphics_HAL.h"
 #include <stdio.h>
 #include "labyrinth.h"
+#include "ButtonLED_HAL.h"
 
 // 100ms in us unit is 100,000
 #define T10MS_IN_US 10000
@@ -24,7 +25,6 @@
 // The above two numbers result in 10/100ms = 10/0.1s = 100 pixel/sec movement for the ball
 
 extern HWTimer_t timer0, timer1;
-
 
 void printList_blocking(Graphics_Context *g_sContext_p, int n)
 {
@@ -92,6 +92,23 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         marble->direction = Stable;
     }
 
+    if (marble->direction == Down){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->y++;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+        marble->direction = Stable;
+    }
+
+    if (marble->direction == Up){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->y--;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+        marble->direction = Stable;
+    }
 }
 
 void DrawTop(Graphics_Context *g_sContext_p){
@@ -216,33 +233,119 @@ void DrawEasyHole(Graphics_Context *g_sContext_p){
 
 void DrawHoles(Graphics_Context *g_sContext_p){
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 25, 85, 3);
+    Graphics_fillCircle(g_sContext_p, 25, 85, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 38, 95, 3);
+    Graphics_fillCircle(g_sContext_p, 38, 95, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 55, 55, 3);
+    Graphics_fillCircle(g_sContext_p, 55, 55, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 65, 85, 3);
+    Graphics_fillCircle(g_sContext_p, 65, 85, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 60, 75, 3);
+    Graphics_fillCircle(g_sContext_p, 60, 75, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 76, 60, 3);
+    Graphics_fillCircle(g_sContext_p, 76, 60, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 80, 85, 3);
+    Graphics_fillCircle(g_sContext_p, 80, 85, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 90, 50, 3);
+    Graphics_fillCircle(g_sContext_p, 90, 50, 2);
 
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
-    Graphics_fillCircle(g_sContext_p, 95, 100, 3);
+    Graphics_fillCircle(g_sContext_p, 95, 100, 2);
 
 }
+
+void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
+
+    if ((marble->x == 25 && marble->y == 85 )|| (marble->x == 28 && marble->y ==88)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 25, 65, true);
+    }
+
+    if ((marble->x == 38 && marble->y == 95 )|| (marble->x == 41 && marble->y ==91)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+
+    if ((marble->x == 55 && marble->y == 55 )|| (marble->x == 58 && marble->y ==58)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+
+    if ((marble->x == 65 && marble->y == 85 )|| (marble->x == 68 && marble->y ==88)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+
+    if ((marble->x == 60 && marble->y == 75 )|| (marble->x == 63 && marble->y ==78)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+
+
+    if ((marble->x == 76 && marble->y == 60 )|| (marble->x == 79 && marble->y ==63)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+
+    if ((marble->x == 80 && marble->y == 85 )|| (marble->x == 83 && marble->y ==88)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+
+    if ((marble->x == 90 && marble->y == 50 )|| (marble->x == 93 && marble->y ==53)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+
+    if ((marble->x == 95 && marble->y == 100 )|| (marble->x == 98 && marble->y ==103)){
+        turnOn_BoosterpackLED_red();
+        char text[25] = "Game Over!";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
+    }
+}
+
 
 void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
 
