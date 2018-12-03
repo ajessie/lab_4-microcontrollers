@@ -4,6 +4,7 @@
 #include "ButtonLED_HAL.h"
 #include "graphics_HAL.h"
 #include "ADC_HAL.h"
+#include "labyrinth.h"
 
 extern HWTimer_t timer0, timer1;
 
@@ -13,13 +14,20 @@ extern HWTimer_t timer0, timer1;
 void initialize();
 void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed);
 
+
 #define LEFT_THRESHOLD  0x1000
+#define STABLE_THRESHOLD 0x1DBF
+#define VX_ZERO_GEAR    0x19BD
+#define ONE_LEFT_TILT 0x1BFF
 #define DURATION 100
+#define VX_LEFT_TILT_THREE 0x13F1
 
 
 int main(void)
-{
+ {
     Graphics_Context g_sContext;
+    Speeds speed;
+    marble_t marble;
     InitGraphics(&g_sContext);
 
     initialize();
@@ -46,6 +54,23 @@ int main(void)
         if (OneShotSWTimerExpired(&OST)) {
 
             getSampleAccelerometer(resultsBuffer);
+            if (resultsBuffer[0] < VX_ZERO_GEAR  || resultsBuffer[0] < STABLE_THRESHOLD){
+                 speed.Vx = 0;
+                 speed.Vy = 0;
+                 WriteSpeed(&speed, &g_sContext);
+            }
+
+            if (resultsBuffer[0] < ONE_LEFT_TILT && resultsBuffer[1] > ONE_LEFT_TILT ){
+                speed.Vx = 1;
+                speed.Vy = 1;
+                WriteSpeed(&speed, &g_sContext);
+            }
+
+            if ((resultsBuffer[0] < 0x18CE && resultsBuffer[1] < 0x1B30) || (resultsBuffer[0] < 0x1450 && resultsBuffer[1] < 0x1C20)){
+                speed.Vx = 2;
+                speed.Vy = 2;
+                WriteSpeed(&speed, &g_sContext);
+            }
             drawAccelData(&g_sContext, resultsBuffer);
             StartOneShotSWTimer(&OST);
         }
@@ -65,8 +90,10 @@ int main(void)
 
 
         ModifyLEDColor(leftButtonPushed,rightButtonPushed);
-
-
+        DrawBall(&g_sContext, &marble);
+        DrawWalls(&g_sContext);
+        DrawEasyStage(&g_sContext);
+        DrawVxVy(&g_sContext);
     }
 }
 
@@ -190,7 +217,6 @@ void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed)
         toggle_BoosterpackLED_blue();
 
 }
-
 
 
 /* This interrupt is fired whenever a conversion is completed and placed in

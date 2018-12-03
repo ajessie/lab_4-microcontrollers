@@ -3,15 +3,20 @@
  *
  *  Created on: Oct 18, 2018
  *      Author: Leyla
+ *      Revised by Jessie Acfalle
  */
 
 #include <ti/grlib/grlib.h>
 #include "LcdDriver/Crystalfontz128x128_ST7735.h"
 #include "Timer32_HAL.h"
+#include "graphics_HAL.h"
+#include <stdio.h>
+#include "labyrinth.h"
 
 // 100ms in us unit is 100,000
 #define T10MS_IN_US 10000
 #define BLOCKING_WAIT_TIME 1000000
+#define MOVE_FORWARD 0x1D11               //move forward threshold
 
 
 #define BALL_Y_STEP 10                   // The ball moves in y direction 10 pixesl per step
@@ -20,10 +25,12 @@
 
 extern HWTimer_t timer0, timer1;
 
+
 void printList_blocking(Graphics_Context *g_sContext_p, int n)
 {
 
     int8_t string[2];
+
     string[1] = 0;
 
 
@@ -50,6 +57,216 @@ void printList_blocking(Graphics_Context *g_sContext_p, int n)
 
     }
 
+}
+
+void DrawBall(Graphics_Context *g_sContext_p, marble_t *marble){                   //Draw the green circle at bottom of the screen
+
+    marble->x = 24;
+    marble->y = 40;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);
+    Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
+}
+
+void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){    //Move the ball within the game
+
+    if(speed->Vx > MOVE_FORWARD){
+          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);          //set the foreground color to blue, to "erase" the previous circle
+          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);  //coordinates for the previous circle
+          marble->x++;                                                             //decrement the variable x, this causes the circle to move towards the left of the screen
+          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_YELLOW);        //set the foreground back to yellow
+          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);  //fill the circle with the updated coordinates
+     }
+}
+
+void DrawTop(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 20, y_pos = 36;
+    uint16_t x2_pos = 20, y2_pos = 37;
+    int i;
+    int j;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 80; i++){
+        x_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+
+    for (j =0; j < 80; j++){
+        x2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
+}
+
+void DrawBottom(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 20, y_pos = 110;
+    uint16_t x2_pos = 20, y2_pos = 109;
+    int i;
+    int j;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 80 ; i++){
+        x_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+
+    for (j =0; j < 80; j++){
+        x2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
+}
+
+void DrawRight(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 100, y_pos = 36;
+    uint16_t x2_pos = 101, y2_pos = 36;
+    int i;
+    int j;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 73; i++){
+        y_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+
+    for (j =0; j < 73; j++){
+        y2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
+}
+
+void DrawLeft(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 20, y_pos = 36;
+    uint16_t x2_pos = 21, y2_pos = 36;
+    int i;
+    int j;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 73; i++){
+        y_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+
+    for (j =0; j < 73; j++){
+        y2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
+}
+
+void DrawWalls(Graphics_Context *g_sContext_p){
+    DrawTop(g_sContext_p);
+    DrawBottom(g_sContext_p);
+    DrawRight(g_sContext_p);
+    DrawLeft(g_sContext_p);
+}
+
+void DrawEasyStage(Graphics_Context *g_sContext_p){
+    uint16_t x_pos = 74, y_pos = 80;
+    uint16_t x2_pos = 22, y2_pos = 90;
+    uint16_t x3_pos = 54, y3_pos = 80;
+    uint16_t x4_pos = 65, y4_pos = 80;
+    uint16_t x5_pos = 40, y5_pos = 36;
+    int i;
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    for (i =0; i < 20; i++){
+        y_pos++;
+        Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+    }
+
+    for (i =0; i < 30; i++){
+        x2_pos++;
+        Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+    }
+
+    for (i =0; i < 30; i++){
+        x3_pos++;
+        Graphics_drawPixel(g_sContext_p, x3_pos, y3_pos);
+    }
+
+
+    for (i =0; i < 30; i++){
+        y4_pos--;
+        Graphics_drawPixel(g_sContext_p, x4_pos, y4_pos);
+    }
+
+    for (i =0; i < 30; i++){
+        y5_pos++;
+        Graphics_drawPixel(g_sContext_p, x5_pos, y5_pos);
+    }
+
+
+
+    //DrawEasyHole(g_sContext_p);
+    DrawHoles(g_sContext_p);
+}
+
+void DrawEasyHole(Graphics_Context *g_sContext_p){
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 90, 70, 4);
+}
+
+void DrawHoles(Graphics_Context *g_sContext_p){
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 25, 85, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 38, 95, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 55, 55, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 65, 85, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 60, 75, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 76, 60, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 80, 85, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 90, 50, 3);
+
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+    Graphics_fillCircle(g_sContext_p, 95, 100, 3);
+
+}
+
+void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
+
+    if (speed->Vx == 0 && speed->Vy==0){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+
+    else if (speed->Vx == 1 && speed->Vy == 1){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+
+    else if (speed->Vx == 2 && speed->Vy == 2){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+}
+
+void DrawVxVy(Graphics_Context *g_sContext_p){                                                                          //This will draw Vx and Vy respectively on the screen
+    char string[10] = "Vx:";
+    char string2[10]= "Vy:";
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+    Graphics_drawString(g_sContext_p,(int8_t *) string , -1, 50, 4, true);                                              //Draw Vx string on top of screen
+    Graphics_drawString(g_sContext_p,(int8_t *) string2 , -1, 50, 14, true);                                            //Draw Vy string on top of screen
 }
 
 
@@ -280,7 +497,7 @@ void drawAccelData(Graphics_Context *g_sContext_p, uint16_t *resultsBuffer)
                                     (int8_t *)string,
                                     8,
                                     64,
-                                    8,
+                                    30,
                                     OPAQUE_TEXT);
 
     make_5digit_NumString(resultsBuffer[1], string);
@@ -288,14 +505,14 @@ void drawAccelData(Graphics_Context *g_sContext_p, uint16_t *resultsBuffer)
                                     (int8_t *)string,
                                     8,
                                     64,
-                                    20,
+                                    42,
                                     OPAQUE_TEXT);
 
-    make_5digit_NumString(resultsBuffer[2], string);
-    Graphics_drawStringCentered(g_sContext_p,
-                                    (int8_t *)string,
-                                    8,
-                                    64,
-                                    32,
-                                    OPAQUE_TEXT);
+//    make_5digit_NumString(resultsBuffer[2], string);
+//    Graphics_drawStringCentered(g_sContext_p,
+//                                    (int8_t *)string,
+//                                    8,
+//                                    64,
+//                                    62,
+//                                    OPAQUE_TEXT);
 }

@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS
+CG_TOOL_ROOT := C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -12,9 +12,12 @@ GEN_CMDS__FLAG :=
 ORDERED_OBJS += \
 "./ADC_HAL.obj" \
 "./ButtonLED_HAL.obj" \
+"./HAL_I2C.obj" \
+"./HAL_OPT3001.obj" \
 "./Lab4_final_main.obj" \
 "./Timer32_HAL.obj" \
 "./graphics_HAL.obj" \
+"./labyrinth.obj" \
 "./system_msp432p401r.obj" \
 "./LcdDriver/Crystalfontz128x128_ST7735.obj" \
 "./LcdDriver/HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj" \
@@ -160,22 +163,22 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Lab4_final.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: MSP432 Linker'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=none --define=__MSP432P401R__ --define=DeviceFamily_MSP432P401x -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"Lab4_final.map" --stack_size=512 -i"C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab4_final_linkInfo.xml" --rom_model -o "Lab4_final.out" $(ORDERED_OBJS)
+	"C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=none --define=__MSP432P401R__ --define=DeviceFamily_MSP432P401x -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"Lab4_final.map" --stack_size=512 -i"C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/lib" -i"C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Lab4_final_linkInfo.xml" --rom_model -o "Lab4_final.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 Lab4_final.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: MSP432 Hex Utility'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/bin/armhex"  -o "Lab4_final.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccv8/ccsv8/tools/compiler/ti-cgt-arm_18.1.2.LTS/bin/armhex"  -o "Lab4_final.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ADC_HAL.obj" "ButtonLED_HAL.obj" "Lab4_final_main.obj" "Timer32_HAL.obj" "graphics_HAL.obj" "system_msp432p401r.obj" "LcdDriver\Crystalfontz128x128_ST7735.obj" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj" "ccs\startup_msp432p401r_ccs.obj" "fonts\fontcmtt16.obj" 
-	-$(RM) "ADC_HAL.d" "ButtonLED_HAL.d" "Lab4_final_main.d" "Timer32_HAL.d" "graphics_HAL.d" "system_msp432p401r.d" "LcdDriver\Crystalfontz128x128_ST7735.d" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.d" "ccs\startup_msp432p401r_ccs.d" "fonts\fontcmtt16.d" 
+	-$(RM) "ADC_HAL.obj" "ButtonLED_HAL.obj" "HAL_I2C.obj" "HAL_OPT3001.obj" "Lab4_final_main.obj" "Timer32_HAL.obj" "graphics_HAL.obj" "labyrinth.obj" "system_msp432p401r.obj" "LcdDriver\Crystalfontz128x128_ST7735.obj" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.obj" "ccs\startup_msp432p401r_ccs.obj" "fonts\fontcmtt16.obj" 
+	-$(RM) "ADC_HAL.d" "ButtonLED_HAL.d" "HAL_I2C.d" "HAL_OPT3001.d" "Lab4_final_main.d" "Timer32_HAL.d" "graphics_HAL.d" "labyrinth.d" "system_msp432p401r.d" "LcdDriver\Crystalfontz128x128_ST7735.d" "LcdDriver\HAL_MSP_EXP432P401R_Crystalfontz128x128_ST7735.d" "ccs\startup_msp432p401r_ccs.d" "fonts\fontcmtt16.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
