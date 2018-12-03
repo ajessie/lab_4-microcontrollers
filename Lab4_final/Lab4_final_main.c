@@ -27,7 +27,8 @@ void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed);
 #define STABLE_Y 0x1D9F
 #define MOVE_RIGHT_SLOW_X 0x1CE8
 #define MOVE_RIGHT_SLOW_Y 0x1EDC
-
+#define MOVE_LEFT_SLOW_X  0x1932
+#define MOVE_LEFT_SLOW_X2 0x1AF4
 
 int main(void)
  {
@@ -98,10 +99,18 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if (resultsBuffer[0] > MOVE_RIGHT_SLOW_X && resultsBuffer[1] < MOVE_RIGHT_SLOW_Y){
+            if (resultsBuffer[0] > MOVE_RIGHT_SLOW_X && resultsBuffer[0] < MOVE_RIGHT_SLOW_Y){
                 speed.Vx = 1;
                 speed.Vy = 1;
                 marble.direction = Right;
+                WriteSpeed(&speed, &g_sContext);
+                MoveBall(&g_sContext, &marble, &speed);
+            }
+
+            if (resultsBuffer[0] < MOVE_LEFT_SLOW_X2 && resultsBuffer[0] > MOVE_LEFT_SLOW_X){
+                speed.Vx = 1;
+                speed.Vy = 1;
+                marble.direction = Left;
                 WriteSpeed(&speed, &g_sContext);
                 MoveBall(&g_sContext, &marble, &speed);
             }

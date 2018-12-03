@@ -79,8 +79,17 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
           marble->direction = Stable;                                               //go into default state of stable
     }
 
-    else if (marble->direction == Stable){
+    if (marble->direction == Stable){
         //if it's stable do nothing?
+    }
+
+    if (marble->direction== Left){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->x--;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+        marble->direction = Stable;
     }
 
 }
