@@ -6,6 +6,7 @@
 #include "ADC_HAL.h"
 #include "labyrinth.h"
 
+
 extern HWTimer_t timer0, timer1;
 
 /* ADC results buffer */
@@ -21,6 +22,11 @@ void ModifyLEDColor(bool leftButtonWasPushed, bool rightButtonWasPushed);
 #define ONE_LEFT_TILT 0x1BFF
 #define DURATION 100
 #define VX_LEFT_TILT_THREE 0x13F1
+#define MOVE_RIGHT 0x1C91
+#define STABLE_X 0x1B9F
+#define STABLE_Y 0x1D9F
+#define MOVE_RIGHT_SLOW_X 0x1CE8
+#define MOVE_RIGHT_SLOW_Y 0x1EDC
 
 
 int main(void)
@@ -48,6 +54,7 @@ int main(void)
                        &timer0,
                        100000);
     StartOneShotSWTimer(&OST);
+    DrawBall(&g_sContext, &marble);
 
     while (1)
     {
@@ -58,23 +65,50 @@ int main(void)
                  speed.Vx = 0;
                  speed.Vy = 0;
                  WriteSpeed(&speed, &g_sContext);
+
             }
 
             if (resultsBuffer[0] < ONE_LEFT_TILT && resultsBuffer[1] > ONE_LEFT_TILT ){
                 speed.Vx = 1;
                 speed.Vy = 1;
                 WriteSpeed(&speed, &g_sContext);
+               // MoveBall(&g_sContext, &marble, &speed);
             }
 
             if ((resultsBuffer[0] < 0x18CE && resultsBuffer[1] < 0x1B30) || (resultsBuffer[0] < 0x1450 && resultsBuffer[1] < 0x1C20)){
                 speed.Vx = 2;
                 speed.Vy = 2;
                 WriteSpeed(&speed, &g_sContext);
+                //MoveBall(&g_sContext, &marble, &speed);
+            }
+
+            if (resultsBuffer[0] > MOVE_RIGHT){
+                speed.Vx = 0;
+                speed.Vy = 0;
+                marble.direction = Right;
+                WriteSpeed(&speed, &g_sContext);
+                MoveBall(&g_sContext, &marble, &speed);
+            }
+
+            if (resultsBuffer[0] > STABLE_X && resultsBuffer[1] < STABLE_Y){
+                speed.Vx = 0;
+                speed.Vy = 0;
+                marble.direction = Stable;
+                WriteSpeed(&speed, &g_sContext);
+                MoveBall(&g_sContext, &marble, &speed);
+            }
+
+            if (resultsBuffer[0] > MOVE_RIGHT_SLOW_X && resultsBuffer[1] < MOVE_RIGHT_SLOW_Y){
+                speed.Vx = 1;
+                speed.Vy = 1;
+                marble.direction = Right;
+                WriteSpeed(&speed, &g_sContext);
+                MoveBall(&g_sContext, &marble, &speed);
             }
             drawAccelData(&g_sContext, resultsBuffer);
             StartOneShotSWTimer(&OST);
         }
-
+       // MoveBall(&g_sContext, &marble, &speed);
         bool leftButtonPushed = ButtonPushed(&LauchpadLeftButton);
         bool rightButtonPushed = ButtonPushed(&LauchpadRightButton);
 
@@ -90,7 +124,7 @@ int main(void)
 
 
         ModifyLEDColor(leftButtonPushed,rightButtonPushed);
-        DrawBall(&g_sContext, &marble);
+        //DrawBall(&g_sContext, &marble);
         DrawWalls(&g_sContext);
         DrawEasyStage(&g_sContext);
         DrawVxVy(&g_sContext);

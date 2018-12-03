@@ -41,10 +41,11 @@
 #define TARGET_MARGIN 3
 
 //Directions the marble can move
-typedef enum {Up, Right, Down, Left} direction_t;
+typedef enum {Up, Right, Down, Left, Stable} direction_t;
 
 typedef struct
 {
+    direction_t direction; //different directions marble can move
     int valid; //Exists in game and on screen if true
     int x;
     int y;

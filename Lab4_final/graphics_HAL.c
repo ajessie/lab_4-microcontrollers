@@ -16,7 +16,7 @@
 // 100ms in us unit is 100,000
 #define T10MS_IN_US 10000
 #define BLOCKING_WAIT_TIME 1000000
-#define MOVE_FORWARD 0x1D11               //move forward threshold
+#define MOVE_RIGHT 0x1C91               //move forward threshold
 
 
 #define BALL_Y_STEP 10                   // The ball moves in y direction 10 pixesl per step
@@ -69,13 +69,20 @@ void DrawBall(Graphics_Context *g_sContext_p, marble_t *marble){                
 
 void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){    //Move the ball within the game
 
-    if(speed->Vx > MOVE_FORWARD){
-          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);          //set the foreground color to blue, to "erase" the previous circle
-          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);  //coordinates for the previous circle
-          marble->x++;                                                             //decrement the variable x, this causes the circle to move towards the left of the screen
-          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_YELLOW);        //set the foreground back to yellow
-          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);  //fill the circle with the updated coordinates
-     }
+    if (marble->direction == Right){
+
+          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+          marble->x++;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
+          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
+          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+          marble->direction = Stable;                                               //go into default state of stable
+    }
+
+    else if (marble->direction == Stable){
+        //if it's stable do nothing?
+    }
+
 }
 
 void DrawTop(Graphics_Context *g_sContext_p){
