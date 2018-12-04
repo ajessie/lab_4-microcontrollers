@@ -109,10 +109,23 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
           Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
           Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
           marble->direction = Stable;                                               //go into default state of stable
+
+          if(speed->Vx == 2){
+              Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+              Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+              marble->x = marble->x + 4;;
+              Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
+              Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+              marble->direction = Stable;
+          }
+
     }
 
     if (marble->direction == Stable){
         //if it's stable do nothing?
+        //set speeds to zero state
+        speed->Vx = 0;
+        speed->Vy = 0;
     }
 
     if (marble->direction== Left){
@@ -122,6 +135,15 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
         marble->direction = Stable;
+
+        if(speed->Vx == 2){
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+            marble->x = marble->x - 4;                                                //decrement the variable x, this causes the circle to move towards the left of the screen
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+            marble->direction = Stable;
+        }
     }
 
     if (marble->direction == Down){
@@ -131,6 +153,15 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
         marble->direction = Stable;
+
+        if(speed->Vy == 2){
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+            marble->y = marble->y + 4;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+            marble->direction = Stable;
+        }
     }
 
     if (marble->direction == Up){
@@ -140,7 +171,16 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
         marble->direction = Stable;
-    }
+
+        if(speed->Vy == 2){
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+            marble->y = marble->y - 4;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+            marble->direction = Stable;
+        }
+      }
 /*****************This Portion will prevent the marble from going through walls*****************/
     if (marble->x < 24){
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
@@ -448,6 +488,46 @@ void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
         Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
     }
 
+    else if (speed->Vx == 0 && speed->Vy == 1){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+
+    else if (speed->Vx == 0 && speed->Vy == 2){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+
+    else if (speed->Vx == 1 && speed->Vy == 0){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+
+    else if (speed->Vx == 2 && speed->Vy == 0){
+        char text[25] = "";
+        char text2[25] = "";
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_WHITE);
+        sprintf(text, "%u", speed->Vx);
+        sprintf(text2, "%u", speed->Vy);
+        Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
+    }
+
     else if (speed->Vx == 1 && speed->Vy == 1){
         char text[25] = "";
         char text2[25] = "";
@@ -467,6 +547,7 @@ void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 75, 4, true);
         Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 75, 14, true);
     }
+
 }
 
 void DrawVxVy(Graphics_Context *g_sContext_p){                                                                          //This will draw Vx and Vy respectively on the screen
