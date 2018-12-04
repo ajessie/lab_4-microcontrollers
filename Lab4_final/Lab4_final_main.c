@@ -39,6 +39,7 @@ int main(void)
     Graphics_Context g_sContext;
     Speeds speed;
     marble_t marble;
+    hole_t hole;
     InitGraphics(&g_sContext);
 
     initialize();
@@ -134,7 +135,7 @@ int main(void)
 
 
         ModifyLEDColor(leftButtonPushed,rightButtonPushed);
-        //DrawBall(&g_sContext, &marble);
+        Win(&g_sContext, &marble, &hole);
         GameOver(&g_sContext, &marble, &speed);
         DrawWalls(&g_sContext);
         DrawEasyStage(&g_sContext);

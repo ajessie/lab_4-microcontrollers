@@ -56,6 +56,10 @@ typedef struct
     int valid;
     int x;
     int y;
+    int xMin;
+    int xMax;
+    int yMin;
+    int yMax;
 } hole_t;
 
 typedef struct
