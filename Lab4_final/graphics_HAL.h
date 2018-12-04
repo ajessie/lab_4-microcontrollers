@@ -44,5 +44,6 @@ void DrawEasyHole(Graphics_Context *g_sContext_p);
 void DrawHoles(Graphics_Context *g_sContext_p);
 void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed);
 void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed);
+void TargetCell(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed);
 
 #endif /* GRAPHICS_HAL_H_ */

@@ -59,6 +59,18 @@ void printList_blocking(Graphics_Context *g_sContext_p, int n)
 
 }
 
+void TargetCell(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){  //create the Target cell
+    Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
+    Graphics_Rectangle R;
+    R.xMin = 26;
+    R.xMax = 30;
+    R.yMin = 100;
+    R.yMax = 105;
+
+    Graphics_drawRectangle(g_sContext_p, &R);
+    Graphics_fillRectangle(g_sContext_p, &R);
+}
+
 void DrawBall(Graphics_Context *g_sContext_p, marble_t *marble){                   //Draw the green circle at bottom of the screen
 
     marble->x = 24;
@@ -199,7 +211,7 @@ void DrawEasyStage(Graphics_Context *g_sContext_p){
         Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
     }
 
-    for (i =0; i < 30; i++){
+    for (i =0; i < 25; i++){
         x2_pos++;
         Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
     }
@@ -215,7 +227,7 @@ void DrawEasyStage(Graphics_Context *g_sContext_p){
         Graphics_drawPixel(g_sContext_p, x4_pos, y4_pos);
     }
 
-    for (i =0; i < 30; i++){
+    for (i =0; i < 20; i++){
         y5_pos++;
         Graphics_drawPixel(g_sContext_p, x5_pos, y5_pos);
     }
@@ -263,16 +275,19 @@ void DrawHoles(Graphics_Context *g_sContext_p){
 
 void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
 
-    if ((marble->x == 25 && marble->y == 85 )|| (marble->x == 28 && marble->y ==88)){
+    if ((marble->x >= 22 && marble->y == 85 )|| (marble->x <= 26 && marble->y ==88)){
         turnOn_BoosterpackLED_red();
-        char text[25] = "Game Over!";
+        char text[25] = "Game";
+        char text2[25] = "Over";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, 2);
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 25, 65, true);
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
+        Graphics_drawString(g_sContext_p, (int8_t *) text2, -1, 66, 65, true);
     }
 
-    if ((marble->x == 38 && marble->y == 95 )|| (marble->x == 41 && marble->y ==91)){
+    if ((marble->x >= 38 && marble->y == 95 )|| (marble->x == 41 && marble->y ==91)){
         turnOn_BoosterpackLED_red();
         char text[25] = "Game Over!";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
@@ -290,7 +305,7 @@ void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
     }
 
-    if ((marble->x == 65 && marble->y == 85 )|| (marble->x == 68 && marble->y ==88)){
+    if ((marble->x >= 65 && marble->y == 85 )|| (marble->x == 68 && marble->y ==88)){
         turnOn_BoosterpackLED_red();
         char text[25] = "Game Over!";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
@@ -299,7 +314,7 @@ void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
     }
 
-    if ((marble->x == 60 && marble->y == 75 )|| (marble->x == 63 && marble->y ==78)){
+    if ((marble->x >= 60 && marble->y == 75 )|| (marble->x == 63 && marble->y ==78)){
         turnOn_BoosterpackLED_red();
         char text[25] = "Game Over!";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
@@ -309,7 +324,7 @@ void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
     }
 
 
-    if ((marble->x == 76 && marble->y == 60 )|| (marble->x == 79 && marble->y ==63)){
+    if ((marble->x >= 76 && marble->y == 60 )|| (marble->x == 79 && marble->y ==63)){
         turnOn_BoosterpackLED_red();
         char text[25] = "Game Over!";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
@@ -318,7 +333,7 @@ void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
     }
 
-    if ((marble->x == 80 && marble->y == 85 )|| (marble->x == 83 && marble->y ==88)){
+    if ((marble->x >= 80 && marble->y == 85 )|| (marble->x == 83 && marble->y ==88)){
         turnOn_BoosterpackLED_red();
         char text[25] = "Game Over!";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
@@ -327,7 +342,7 @@ void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
     }
 
-    if ((marble->x == 90 && marble->y == 50 )|| (marble->x == 93 && marble->y ==53)){
+    if ((marble->x >= 90 && marble->y == 50 )|| (marble->x == 93 && marble->y ==53)){
         turnOn_BoosterpackLED_red();
         char text[25] = "Game Over!";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
@@ -336,7 +351,7 @@ void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
         Graphics_drawString(g_sContext_p, (int8_t *) text, -1, 30, 65, true);
     }
 
-    if ((marble->x == 95 && marble->y == 100 )|| (marble->x == 98 && marble->y ==103)){
+    if ((marble->x >= 95 && marble->y == 100 )|| (marble->x == 98 && marble->y ==103)){
         turnOn_BoosterpackLED_red();
         char text[25] = "Game Over!";
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);

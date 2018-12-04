@@ -60,32 +60,13 @@ int main(void)
                        100000);
     StartOneShotSWTimer(&OST);
     DrawBall(&g_sContext, &marble);
+    TargetCell(&g_sContext, &marble, &speed);
 
     while (1)
     {
         if (OneShotSWTimerExpired(&OST)) {
 
             getSampleAccelerometer(resultsBuffer);
-//            if (resultsBuffer[0] < VX_ZERO_GEAR  || resultsBuffer[0] < STABLE_THRESHOLD){
-//                 speed.Vx = 0;
-//                 speed.Vy = 0;
-//                 WriteSpeed(&speed, &g_sContext);
-//
-//            }
-//
-//            if (resultsBuffer[0] < ONE_LEFT_TILT && resultsBuffer[1] > ONE_LEFT_TILT ){
-//                speed.Vx = 1;
-//                speed.Vy = 1;
-//                WriteSpeed(&speed, &g_sContext);
-//               // MoveBall(&g_sContext, &marble, &speed);
-//            }
-//
-//            if ((resultsBuffer[0] < 0x18CE && resultsBuffer[1] < 0x1B30) || (resultsBuffer[0] < 0x1450 && resultsBuffer[1] < 0x1C20)){
-//                speed.Vx = 2;
-//                speed.Vy = 2;
-//                WriteSpeed(&speed, &g_sContext);
-//                //MoveBall(&g_sContext, &marble, &speed);
-//            }
 
             if (resultsBuffer[0] > MOVE_RIGHT){
                 speed.Vx = 0;
