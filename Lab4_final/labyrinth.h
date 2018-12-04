@@ -49,6 +49,7 @@ typedef struct
     int valid; //Exists in game and on screen if true
     int x;
     int y;
+    int wall_x_count;
 } marble_t;
 
 typedef struct

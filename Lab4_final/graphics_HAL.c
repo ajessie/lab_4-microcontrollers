@@ -102,12 +102,12 @@ void DrawBall(Graphics_Context *g_sContext_p, marble_t *marble){                
 void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){    //Move the ball within the game
 
     if (marble->direction == Right){
-
+          marble->wall_x_count++;
           Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
           Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
           marble->x++;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
-          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
-          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+          Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
+          Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
           marble->direction = Stable;                                               //go into default state of stable
     }
 
@@ -119,7 +119,7 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
         marble->x--;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
-        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
         marble->direction = Stable;
     }
@@ -128,7 +128,7 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
         marble->y++;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
-        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to green
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
         marble->direction = Stable;
     }
@@ -137,8 +137,45 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
         marble->y--;                                                              //decrement the variable x, this causes the circle to move towards the left of the screen
-        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to yellow
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);    //fill the circle with the updated coordinates
+        marble->direction = Stable;
+    }
+/*****************This Portion will prevent the marble from going through walls*****************/
+    if (marble->x < 24){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->x = 24;                                                           //keep the marble in the boundary
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+        marble->direction = Stable;
+
+    }
+
+    if (marble->y < 40){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->y = 40;                                                           //keep the marble in the boundary
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+        marble->direction = Stable;
+    }
+
+    if (marble->y > 105){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->y = 105;                                                          //keep the marble in the boundary
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+        marble->direction = Stable;
+    }
+
+    if (marble->x > 90){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->x = 90;                                                          //keep the marble in the boundary
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
         marble->direction = Stable;
     }
 }
