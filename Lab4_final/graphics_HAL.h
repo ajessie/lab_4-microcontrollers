@@ -39,7 +39,7 @@ void DrawBottom(Graphics_Context *g_sContext_p);
 void DrawRight(Graphics_Context *g_sContext_p);
 void DrawLeft(Graphics_Context *g_sContext_p);
 void DrawWalls(Graphics_Context *g_sContext_p);
-void DrawEasyStage(Graphics_Context *g_sContext_p);
+void DrawEasyStage(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed);
 void DrawEasyHole(Graphics_Context *g_sContext_p);
 void DrawHoles(Graphics_Context *g_sContext_p);
 void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed);

@@ -220,6 +220,7 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
     }
 }
 
+/**********Begin drawing the border********************8*/
 void DrawTop(Graphics_Context *g_sContext_p){
     uint16_t x_pos = 20, y_pos = 36;
     uint16_t x2_pos = 20, y2_pos = 37;
@@ -295,38 +296,88 @@ void DrawWalls(Graphics_Context *g_sContext_p){
     DrawLeft(g_sContext_p);
 }
 
-void DrawEasyStage(Graphics_Context *g_sContext_p){
-    uint16_t x_pos = 74, y_pos = 80;
+//end section
+
+void DrawEasyStage(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){  //Draw the stage
+    uint16_t x_pos = 74, y_pos = 80, y_pos1 = 81;
     uint16_t x2_pos = 22, y2_pos = 90;
     uint16_t x3_pos = 54, y3_pos = 80;
     uint16_t x4_pos = 65, y4_pos = 80;
     uint16_t x5_pos = 40, y5_pos = 36;
     int i;
+    int j;
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_RED);
     for (i =0; i < 20; i++){
         y_pos++;
         Graphics_drawPixel(g_sContext_p, x_pos, y_pos);
+        if (marble->x == 70 && marble->y == y_pos){
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+            marble->x = 69;                                                           //keep the marble in the boundary
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+            marble->direction = Stable;
+            MoveBall(g_sContext_p, marble, speed);
+
+        }
     }
 
     for (i =0; i < 25; i++){
         x2_pos++;
         Graphics_drawPixel(g_sContext_p, x2_pos, y2_pos);
+        if((marble->x == x2_pos && marble->y == 88)){
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+            marble->y = 87;                                                           //keep the marble in the boundary
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+            marble->direction = Stable;
+            MoveBall(g_sContext_p, marble, speed);
+
+        }
     }
 
     for (i =0; i < 30; i++){
         x3_pos++;
         Graphics_drawPixel(g_sContext_p, x3_pos, y3_pos);
+        if(marble->x == x3_pos && marble->y == 77){
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+            marble->y = 76;                                                           //keep the marble in the boundary
+            Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+            Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+            marble->direction = Stable;
+            MoveBall(g_sContext_p, marble, speed);
+        }
     }
 
 
     for (i =0; i < 30; i++){
         y4_pos--;
         Graphics_drawPixel(g_sContext_p, x4_pos, y4_pos);
+        if(marble->x == 60 && marble->y == y_pos){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->x = 59;                                                           //keep the marble in the boundary
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+        marble->direction = Stable;
+        MoveBall(g_sContext_p, marble, speed);
+        }
     }
 
     for (i =0; i < 20; i++){
         y5_pos++;
         Graphics_drawPixel(g_sContext_p, x5_pos, y5_pos);
+        if(marble->x == x5_pos && marble->y == y5_pos){
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
+        marble->x = 38;                                                           //keep the marble in the boundary
+        Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
+        Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
+        marble->direction = Stable;
+        MoveBall(g_sContext_p, marble, speed);
+        }
     }
 
 
@@ -370,7 +421,7 @@ void DrawHoles(Graphics_Context *g_sContext_p){
 
 }
 
-void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
+void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){                 //this function determines if the game is over/if the player has fallen into a hole
 
     if (marble->x == 25 && marble->y == 85) {
         turnOn_BoosterpackLED_red();
@@ -476,7 +527,7 @@ void GameOver(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){
     }
 }
 
-void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){
+void WriteSpeed(Speeds *speed, Graphics_Context *g_sContext_p){                     //display 0,1, or 2 for speeds of the marble
 
     if (speed->Vx == 0 && speed->Vy==0){
         char text[25] = "";
@@ -654,7 +705,7 @@ void make_5digit_NumString(unsigned int num, int8_t *string)
     string[5]= 0;
 }
 
-void drawXY(Graphics_Context *g_sContext_p, unsigned int x, unsigned int y)
+void drawXY(Graphics_Context *g_sContext_p, unsigned int x, unsigned int y)                 //display XY on screen
 {
     int8_t string[6];
 

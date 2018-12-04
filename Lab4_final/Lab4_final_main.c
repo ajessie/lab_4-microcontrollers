@@ -67,9 +67,9 @@ int main(void)
     {
         if (OneShotSWTimerExpired(&OST)) {
 
-            getSampleAccelerometer(resultsBuffer);
+            getSampleAccelerometer(resultsBuffer);                                              //Get movement from tilt of board
 
-            if (resultsBuffer[0] > STABLE_X && resultsBuffer[1] < STABLE_Y){
+            if (resultsBuffer[0] > STABLE_X && resultsBuffer[1] < STABLE_Y){                    //handle stable ball movement
                 speed.Vx = 0;
                 speed.Vy = 0;
                 marble.direction = Stable;
@@ -77,7 +77,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if (resultsBuffer[0] > MOVE_RIGHT_SLOW_X && resultsBuffer[0] < MOVE_RIGHT_SLOW_Y){
+            if (resultsBuffer[0] > MOVE_RIGHT_SLOW_X && resultsBuffer[0] < MOVE_RIGHT_SLOW_Y){  //slow movement to the right gear one
                 speed.Vx = 1;
                 speed.Vy = 0;
                 marble.direction = Right;
@@ -85,7 +85,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if (resultsBuffer[0] > MOVE_RIGHT_SLOW_Y){
+            if (resultsBuffer[0] > MOVE_RIGHT_SLOW_Y){                                          //switch to 2, or gear 2
                 speed.Vx = 2;
                 speed.Vy = 0;
                 marble.direction = Right;
@@ -93,7 +93,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if (resultsBuffer[0] > MOVE_LEFT_SLOW_X && resultsBuffer[0] < MOVE_LEFT_SLOW_X2){
+            if (resultsBuffer[0] > MOVE_LEFT_SLOW_X && resultsBuffer[0] < MOVE_LEFT_SLOW_X2){   //move left at 1
                 speed.Vx = 1;
                 speed.Vy = 0;
                 marble.direction = Left;
@@ -101,7 +101,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if(resultsBuffer[0] < MOVE_LEFT_SLOW_X){
+            if(resultsBuffer[0] < MOVE_LEFT_SLOW_X){                                            //move left at 2
                 speed.Vx = 2;
                 speed.Vy = 0;
                 marble.direction = Left;
@@ -109,7 +109,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if(resultsBuffer[1] < MOVE_DOWN_SLOW_Y && resultsBuffer[1] > MOVE_DOWN_SLOW_Y2){
+            if(resultsBuffer[1] < MOVE_DOWN_SLOW_Y && resultsBuffer[1] > MOVE_DOWN_SLOW_Y2){  //move down
                 speed.Vx = 0;
                 speed.Vy = 1;
                 marble.direction = Down;
@@ -141,7 +141,7 @@ int main(void)
                WriteSpeed(&speed, &g_sContext);
                MoveBall(&g_sContext, &marble, &speed);
            }
-            drawAccelData(&g_sContext, resultsBuffer);
+
             StartOneShotSWTimer(&OST);
         }
        // MoveBall(&g_sContext, &marble, &speed);
@@ -160,11 +160,11 @@ int main(void)
 
 
         ModifyLEDColor(leftButtonPushed,rightButtonPushed);
-        Win(&g_sContext, &marble, &hole);
-        GameOver(&g_sContext, &marble, &speed);
-        DrawWalls(&g_sContext);
-        DrawEasyStage(&g_sContext);
-        DrawVxVy(&g_sContext);
+        Win(&g_sContext, &marble, &hole);                   //see if the player won
+        GameOver(&g_sContext, &marble, &speed);             //game over
+        DrawEasyStage(&g_sContext, &marble, &speed);        //draw the maze
+        DrawWalls(&g_sContext);                             //draw boundary
+        DrawVxVy(&g_sContext);                              //display X and Y
     }
 }
 
