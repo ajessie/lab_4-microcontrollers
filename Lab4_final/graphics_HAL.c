@@ -170,10 +170,10 @@ void MoveBall(Graphics_Context *g_sContext_p, marble_t *marble, Speeds *speed){ 
         marble->direction = Stable;
     }
 
-    if (marble->x > 90){
+    if (marble->x > 95){
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLUE);           //set the foreground color to blue, to "erase" the previous circle
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //coordinates for the previous circle
-        marble->x = 90;                                                          //keep the marble in the boundary
+        marble->x = 95;                                                          //keep the marble in the boundary
         Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_GREEN);          //set the foreground back to greeb
         Graphics_fillCircle(g_sContext_p, marble->x, marble->y, MARBLE_RADIUS);   //fill the circle with the updated coordinates
         marble->direction = Stable;
