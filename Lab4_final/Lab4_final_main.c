@@ -109,7 +109,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if(resultsBuffer[1] < MOVE_DOWN_SLOW_Y && resultsBuffer[1] > MOVE_DOWN_SLOW_Y2){  //move down
+            if(resultsBuffer[1] < MOVE_DOWN_SLOW_Y && resultsBuffer[1] > MOVE_DOWN_SLOW_Y2){  //move down at speed 1
                 speed.Vx = 0;
                 speed.Vy = 1;
                 marble.direction = Down;
@@ -117,7 +117,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if (resultsBuffer[1] < MOVE_DOWN_SLOW_Y2){
+            if (resultsBuffer[1] < MOVE_DOWN_SLOW_Y2){                                         //move down at speed 2
                 speed.Vx = 0;
                 speed.Vy = 2;
                 marble.direction = Down;
@@ -125,7 +125,7 @@ int main(void)
                 MoveBall(&g_sContext, &marble, &speed);
             }
 
-            if (resultsBuffer[1] > MOVE_UP_SLOW_Y && resultsBuffer[1] < MOVE_UP_SLOW_Y2){
+            if (resultsBuffer[1] > MOVE_UP_SLOW_Y && resultsBuffer[1] < MOVE_UP_SLOW_Y2){     //Move up at speed 1
                 speed.Vx = 0;
                 speed.Vy = 1;
                 marble.direction = Up;
@@ -134,7 +134,7 @@ int main(void)
 
             }
 
-            if (resultsBuffer[1] > MOVE_UP_SLOW_Y2 ){
+            if (resultsBuffer[1] > MOVE_UP_SLOW_Y2 ){                                       //Move up at speed 2
                speed.Vx = 0;
                speed.Vy = 2;
                marble.direction = Up;

@@ -59,7 +59,7 @@ void printList_blocking(Graphics_Context *g_sContext_p, int n)
 
 }
 
-void Win(Graphics_Context *g_sContext_p, marble_t *marble, hole_t *hole){
+void Win(Graphics_Context *g_sContext_p, marble_t *marble, hole_t *hole){               //display winning screen and turn on green led to show win
     hole->yMin = 100;
     hole->yMax = 105;
     hole->xMin = 26;
