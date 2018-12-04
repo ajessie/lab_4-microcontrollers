@@ -391,7 +391,7 @@ void DrawEasyHole(Graphics_Context *g_sContext_p){
     Graphics_fillCircle(g_sContext_p, 90, 70, 4);
 }
 
-void DrawHoles(Graphics_Context *g_sContext_p){
+void DrawHoles(Graphics_Context *g_sContext_p){                                             //Draw the differnt holes
     Graphics_setForegroundColor(g_sContext_p, GRAPHICS_COLOR_BLACK);
     Graphics_fillCircle(g_sContext_p, 25, 85, 2);
 
